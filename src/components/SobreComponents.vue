@@ -1,5 +1,6 @@
 <script setup>
 
+
 const integrantes = [
   { nome: 'Davi Dos Passos', funcao: 'Desenvolvedor Frontend' },
   { nome: 'Gianluca Gadotti', funcao: 'Desenvolvedor Backend' },
@@ -10,40 +11,54 @@ const integrantes = [
 ];
 
 
+
+
 </script>
 <template>
 
 
+
+
     <div class="sobre">
+
 
     <h1>SOBRE NOS</h1>
 
-    <div class="integrante">
-    <li v-for="integrante in integrantes" :key="integrante.nome">
 
+    <ul class="integrante">
+    <li v-for="integrante in integrantes" :key="integrante.nome">
+      <img src="" alt="imagem">
       <h2>{{ integrante.nome }}</h2>
       <p>{{ integrante.funcao }}</p>
     </li>
-    </div>
+  </ul>
      </div>
+
+
 
 
 </template>
 
+
 <style scoped>
 
+
 h1{
+
 
   font-family: 'Ade', serif;
   background-color: #8EAFB7;
   color: white;
   font-size: 3.5rem;
   display: inline-block;
-  padding: 4vw 8vw;
+  padding: 2vw 8vw;
+  margin-bottom: 5vw;
   border-bottom-left-radius: 8vw;
   border-bottom-right-radius: 8vw;
 
+
 }
+
 
 div.sobre{
   text-align: center;
@@ -52,26 +67,33 @@ div.sobre{
   height: 100vh;
   background-color: #215567;
 }
-div.integrante{
- display: flex;
-  justify-content: center;
-  align-items: center;
+ul.integrante {
+  display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  text-align: center;
-  list-style: none;
-  width: 40%;
+  justify-content: center;
+
+
   margin: 0 auto;
-
-}
-div.integrante li{
-
-  min-width: 10.417vw;
-
-
-
+  width: 60%;
 }
 
+
+ul.integrante li {
+  width: 16.021vw; 
+  padding: 1rem;
+  list-style: none;
+  color: #D7D7D7;
+}
+ul.integrante li img {
+  width: 100%;
+  height: auto;
+
+
+  border: 5px solid #8EAFB7;
+}
 
 
 </style>
+
+
+
