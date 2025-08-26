@@ -1,1 +1,9 @@
 @import './base.css';
+
+
+@font-face {
+  font-family: 'Ade Display';
+  src: url('src/assets/fonts/AdeDisplay-Regular.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
