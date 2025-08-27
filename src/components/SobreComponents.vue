@@ -6,7 +6,7 @@ const integrantes = [
   { nome: 'Gianluca Gadotti', funcao: 'Desenvolvedor Backend' },
   { nome: 'Gustavo Alves', funcao: 'Designer UI/UX' },
   { nome: 'João P> Bachamann', funcao: 'Gerente de Projeto' },
-  { nome: 'José Neto', funcao: 'Analista de Qualidade' },
+  { nome: 'José Neto', funcao: 'Anal. de Qualidade' },
   { nome: 'Luiz Roberto', funcao: 'Especialista em Marketing' },
 ];
 
@@ -32,10 +32,14 @@ const integrantes = [
       <p>{{ integrante.funcao }}</p>
     </li>
   </ul>
+
+
+     <div class="nosso">
+      <h2>NOSSO OBJETIVO</h2>
      </div>
 
 
-
+ </div>
 
 </template>
 
@@ -62,7 +66,7 @@ h1{
 
 div.sobre{
   text-align: center;
-  color: #2c3e50;
+
   margin: 0;
   height: 100vh;
   background-color: #215567;
@@ -79,7 +83,7 @@ ul.integrante {
 
 
 ul.integrante li {
-  width: 16.021vw; 
+  width: 16.021vw;
   padding: 1rem;
   list-style: none;
   color: #D7D7D7;
@@ -91,7 +95,17 @@ ul.integrante li img {
 
   border: 5px solid #8EAFB7;
 }
+div.nosso{
+  background-color: #8EAFB7;
+  color: white;
+  font-size: 2.5rem;
+  display: inline-block;
+  padding: 1vw 4vw;
+  margin-top: 5vw;
+  border-top-left-radius: 4vw;
+  border-top-right-radius: 4vw;
 
+}
 
 </style>
 
