@@ -9,6 +9,10 @@ function setSection(sec) {
   activeSection.value = sec
 }
 </script>
+<template>
+  <HeaderComponent />
+  <RouterView />
+</template>
 
 <template>
   <div class="pagina">
@@ -31,7 +35,6 @@ function setSection(sec) {
     </main>
   </div>
 </template>
-
 <style scoped>
 
 </style>
