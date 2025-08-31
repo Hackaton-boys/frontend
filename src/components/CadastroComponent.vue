@@ -16,6 +16,7 @@ export default {
     };
   },
 };
+
 </script>
 <template>
   <div class="app">
@@ -135,6 +136,7 @@ div.app {
     opacity: 0.8;
     background: radial-gradient(circle at 190% 30%, #BDD5d9, #285b6c);
     animation: flutuar 6s ease-in-out infinite alternate;
+    margin-top: 47vw;
   }
   @keyframes flutuar {
     from {
