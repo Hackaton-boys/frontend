@@ -228,5 +228,77 @@ button:hover {
 .btn-remover:hover {
   color: red;
 }
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  textarea {
+    width: 250px;
+    height: 70px;
+    font-size: 13px;
+  }
+
+  .comentarios {
+    width: 280px;
+  }
+
+  .card-comentario {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .bolha {
+    opacity: 0.7; /* menos destaque em telas menores */
+  }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+  .fundo {
+    padding-top: 10px;
+  }
+
+  h1 {
+    font-size: 1rem;
+  }
+
+  textarea {
+    width: 200px;
+    height: 60px;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .comentarios {
+    width: 220px;
+  }
+
+  .card-comentario {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .estrela {
+    font-size: 16px;
+  }
+
+  .estrelas .estrela {
+    font-size: 12px;
+  }
+}
+
 </style>
 
