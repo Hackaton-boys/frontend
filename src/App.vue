@@ -11,26 +11,7 @@ function setSection(sec) {
 }
 </script>
 <template>
-  <div class="pagina">
-    <header>
-      <HeaderComponent :setSection="setSection" />
-    </header>
-    <main>
-      <section v-if="activeSection === 'mapa'">
-        <MapsComponent />
-      </section>
 
-      <section v-else-if="activeSection === 'cadastro'">
-        <CadastroComponent />
-      </section>
-
-      <section v-else-if="activeSection === 'reservar'">
-      </section>
-
-      <section v-else-if="activeSection === 'sobre'">
-      </section>
-    </main>
-  </div>
 </template>
 <style scoped>
 
