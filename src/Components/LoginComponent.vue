@@ -147,6 +147,64 @@ export default {
 .btn-login:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ============================= */
+/*        RESPONSIVIDADE         */
+/* ============================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 20px;
+    width: 300px;
+  }
+
+  .login-box h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .input-group input {
+    font-size: 0.9rem;
+    padding: 8px 8px 8px 35px;
+  }
+
+  .btn-login {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 25px 15px;
+    width: 250px;
+    border-radius: 15px;
+  }
+
+  .login-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    gap: 15px;
+  }
+
+  .input-group input {
+    font-size: 0.8rem;
+    padding: 7px 7px 7px 32px;
+  }
+
+  .cadastro {
+    font-size: 0.8rem;
+  }
+
+  .btn-login {
+    font-size: 0.8rem;
+    padding: 7px;
+  }
+}
 </style>
 <!-- Adicionei animação de flutuação nas bolhas e um efeito de blur no fundo do card de login para um visual mais moderno -->
 <!-- Usei ícones da Material Design Icons (mdi) para os inputs -->
