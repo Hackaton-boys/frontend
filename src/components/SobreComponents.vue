@@ -2,12 +2,12 @@
 
 
 const integrantes = [
-  { nome: 'Davi Dos Passos', funcao: 'Desenvolvedor Frontend' },
-  { nome: 'Gianluca Gadotti', funcao: 'Desenvolvedor Backend' },
+  { nome: 'Davi Dos Passos', funcao: 'Des. Frontend' },
+  { nome: 'Gianluca Gadotti', funcao: 'Des. Backend' },
   { nome: 'Gustavo Alves', funcao: 'Designer UI/UX' },
   { nome: 'João P> Bachamann', funcao: 'Gerente de Projeto' },
   { nome: 'José Neto', funcao: 'Anal. de Qualidade' },
-  { nome: 'Luiz Roberto', funcao: 'Especialista em Marketing' },
+  { nome: 'Luiz Roberto', funcao: 'Espec. em Marketing' },
 ];
 
 
@@ -76,7 +76,7 @@ div.sobre{
 ul.integrante {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+
 
 
   margin: 0 auto;
@@ -85,8 +85,8 @@ ul.integrante {
 
 
 ul.integrante li {
-  width: 16.021vw;
-  padding: 1rem;
+  width: 30%;
+  padding: 1rem 0;
   list-style: none;
   color: #D7D7D7;
 }
@@ -128,7 +128,35 @@ div.nosso p{
 
 
 }
+@media (max-width: 768px) {
+  ul.integrante {
+    width: 100%;
+  }
+  ul.integrante li {
+    width: 45%;
+    padding: 1rem 0;
+  }
+  div.nosso {
+    width: 90%;
 
+  }
+  h1 {
+    font-size: 2.5rem;
+    padding: 1.5vw 0;
+
+}
+  div.nosso h2 {
+    font-size: 2rem;
+  }
+  div.nosso p {
+    font-size: 1.2rem;
+    
+
+  text-align: left;
+  text-justify: inter-word; /* melhora um pouco a distribuição */
+  word-break: break-word;
+  }
+}
 </style>
 
 
