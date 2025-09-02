@@ -32,7 +32,7 @@
             </div>
 
             <div>
-                <button type="submit">Enviar</button>
+                <button type="submit">Confimar reserva</button>
             </div>
         </fieldset>
     </form>
