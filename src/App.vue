@@ -41,6 +41,7 @@
                 <button type="submit">Confimar reserva</button>
             </div>
     </form>
+    
     <div class="bolha bolha1"></div>
   <div class="bolha bolha2"></div>
   <div class="bolha bolha3"></div>
@@ -66,6 +67,7 @@ h1{
   color: white;
   font-size: 5vw;
   z-index: 2;
+  font-family:'Times New Roman', Times, serif ;
 }
 form{
   position: relative;
@@ -122,6 +124,7 @@ button{
   transition: 0.3s;
    background: rgba(255, 255, 255, 0.2);
 }
+
 .bolha1{
       position: absolute;
       width: 350px;
@@ -138,6 +141,7 @@ button{
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
        z-index: 1; 
+
       
     
     }
@@ -154,7 +158,7 @@ button{
       height: 100px;
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
-      
+
     }
     .bolha5 {
       position: absolute;
@@ -166,10 +170,34 @@ button{
     }
 
     /* Exemplos de bolhas em posições diferentes */
-    .bolha1 { bottom: -5%; left: -5%; }
+    .bolha1{ top: 54%;}
     .bolha2 { top: -5%; left: 46%; width: 370px; height: 370px;}
-    .bolha3 { top: 70%; left: 70%; width: 200px; height: 200px; }
-    .bolha4 { top: 30%; left: 84%; width: 300px; height: 300px; }
-    .bolha5 { top: 60%; left: 30%; width: 20px; height: 20px; }
+    .bolha3 { top: 70%; left: 50%; width: 200px; height: 200px; }
+    .bolha4 { top: 30%; left: 80%; width: 300px; height: 300px; }
+    .bolha5 { top: 15%; left: 20%; width: 200px; height: 200px; }
 
+
+           /*celulares////////////////*/
+
+   @media(max-width:480px){
+    h1{
+  
+  font-size: 2rem;
+  padding: 3vw 0;
+
+   }
+   .nome{
+    width: 60vw;
+   }
+   .endereco{
+    width: 60vw;
+   }
+   .cpf{
+    width: 60vw;
+   }
+   .pontos{
+    width: 60vw;
+   }
+   
+  }
 </style>
