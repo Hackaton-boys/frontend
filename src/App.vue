@@ -11,7 +11,7 @@ function setSection(sec) {
 }
 </script>
 <template>
-
+  <RouterView />
 </template>
 <style scoped>
 
