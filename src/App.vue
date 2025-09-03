@@ -127,8 +127,6 @@ button{
 
 .bolha1{
       position: absolute;
-      width: 350px;
-      height: 350px;
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
       z-index: 1;
@@ -170,7 +168,7 @@ button{
     }
 
     /* Exemplos de bolhas em posições diferentes */
-    .bolha1{ top: 54%;}
+    .bolha1{ top: 53%;  width: 370px; height: 370px;}
     .bolha2 { top: -5%; left: 46%; width: 370px; height: 370px;}
     .bolha3 { top: 70%; left: 50%; width: 200px; height: 200px; }
     .bolha4 { top: 30%; left: 80%; width: 300px; height: 300px; }
@@ -188,16 +186,31 @@ button{
    }
    .nome{
     width: 60vw;
+    margin: 3vw 0 3vw 0;
    }
    .endereco{
     width: 60vw;
+        margin: 0 0 3vw 0;
+
    }
    .cpf{
     width: 60vw;
+        margin: 0 0 3vw 0;
+
    }
    .pontos{
     width: 60vw;
+        margin: 0 0 3vw 0;
+
    }
-   
+   button{
+    width: 40vw;
+    font-size: 0.7rem;
+   }
+   div.bolha1{ top: 75%; width: 120px; height: 120px;}
+    div.bolha2 { top: -5%; left: 46%; width: 150px; height: 150px;}
+    div.bolha3 { top: 70%; left: 60%; width: 100px; height: 100px; }
+    div.bolha4 { top: 40%; left: 30%; width: 110px; height: 110px; }
+    div.bolha5 { top: 12%; left: 7%; width: 80px; height: 80px; }
   }
 </style>
