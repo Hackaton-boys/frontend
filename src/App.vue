@@ -86,12 +86,14 @@ export default {
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  width: 25%;
+  height: 95%;
 }
 
 .cadastro-box h2 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   line-height: 1.4;
   font-family: 'Times New Roman', serif;
 }
@@ -101,23 +103,22 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
 
 .form input {
-  width: 370px;
-  padding: 10px;
+  width: 100%;
+  padding: 7px;
   border-color: #8EAFB7;
   border-radius: 20px;
   outline: none;
   font-size: 1rem;
-  margin-left: 1vw;
 }
 
 /* Botões */
 .btn-cadastrar,
 .btn-cancelar {
-  width: 180px;
+  width: 20vh;
   padding: 10px;
   border-radius: 20px;
   cursor: pointer;
@@ -148,14 +149,15 @@ export default {
 =================================*/
 
 @media (max-width: 480px) {
+
   .cadastro-box{
     padding: 25px 15px;
-    width: 300px;
+    width: 85%;
     border-radius: 15px;
   }
   .cadastro-box h2 {
-    font-size: 1.5rem;
-    margin-bottom:20vw; 
+    font-size: 2rem;
+    margin-bottom:20vw;
   }
   .form {
     gap: 20px;
@@ -163,13 +165,15 @@ export default {
   .form input{
     font-size: 0.8rem;
     padding: 7px 7px 7px 32px;
-    width: 260px ;
+    width: 87%;
+    margin-bottom: 1.5vh;
+    margin-left: 2.2vh;
   }
   .btn-cadastrar,
   .btn-cancelar {
     font-size: 0.8rem;
     padding: 7px ;
-    margin-bottom: 10px;
+  
   }
   .espaco {
     margin-bottom: 50px;
