@@ -1,18 +1,36 @@
-<script>
-export default {
-  name: "LoginPage",
-  data() {
-    return {
-      bolhas: [
-        { top: "10%", left: "5%", size: "150px" },
-        { top: "20%", left: "70%", size: "120px" },
-        { top: "60%", left: "80%", size: "200px" },
-        { top: "75%", left: "15%", size: "100px" },
-        { top: "40%", left: "40%", size: "180px" }
-      ]
-    };
+<script setup>
+import { reactive } from "vue";
+import { useUsuarioStore } from "@/stores/usuario";
+import { useRouter } from "vue-router";
+
+const usuarioStore = useUsuarioStore();
+const router = useRouter();
+
+// bolhas decorativas
+const bolhas = [
+  { top: "10%", left: "5%", size: "150px" },
+  { top: "20%", left: "70%", size: "120px" },
+  { top: "60%", left: "80%", size: "200px" },
+  { top: "75%", left: "15%", size: "100px" },
+  { top: "40%", left: "40%", size: "180px" }
+];
+
+// credenciais do formulário
+const credentials = reactive({
+  email: "",
+  password: ""
+});
+
+// função de login
+async function handleLogin() {
+  try {
+    await usuarioStore.login(credentials.email, credentials.password);
+    alert("Login realizado com sucesso!");
+    router.push("/dashboard"); // redireciona após login
+  } catch {
+    alert("Falha no login. Verifique suas credenciais.");
   }
-};
+}
 </script>
 
 <template>
@@ -29,15 +47,15 @@ export default {
     <div class="login-box">
       <h2>LOGIN</h2>
 
-      <form class="form">
+      <form class="form" @submit.prevent="handleLogin">
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-email"></i></span>
-          <input type="email" placeholder="Email" />
+          <input type="email" v-model="credentials.email" placeholder="Email" />
         </div>
 
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <input type="password" placeholder="Senha" />
+          <input type="password" v-model="credentials.password" placeholder="Senha" />
         </div>
 
         <p class="cadastro">Cadastre-se</p>

@@ -5,16 +5,24 @@ const routes = [
     name: 'login',
     path: '/login',
     component: () => import('@/views/loginView.vue'),
-  }
+  },
+  {
     path: '/digasuaexperiencia',
     name: 'digasuaexperiencia',
     component: () => import('@/views/experienciaView.vue'),
-},
+  },
   {
     path: '/cadastro',
     name: 'Cadastro',
     component: () => import('@/views/CadastroView.vue'),
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/loginView.vue'),
+  },
+  {
+  }
 ];
 
 const router = createRouter({

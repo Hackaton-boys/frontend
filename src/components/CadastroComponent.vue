@@ -1,23 +1,70 @@
-<script>
-export default {
-  name: 'CadastroComponent',
-  data() {
-    return {
-      bolhas: [
-        { top: "10%", left: "5%", size: "150px"},
-        { top: "20%", left: "80%", size: "100px"},
-        { top: "70%", left: "10%", size: "120px"},
-        { top: "80%", left: "70%", size: "180px"},
-        { top: "50%", left: "50%", size: "90px"},
-        { top: "30%", left: "40%", size: "130px"},
-        { top: "60%", left: "20%", size: "110px"},
-        { top: "40%", left: "80%", size: "140px"},
-      ]
-    };
-  },
+<script setup>
+import { reactive, onMounted, computed } from 'vue';
+import { useUsuarioStore } from '@/stores/usuario';
+
+const usuarioStore = useUsuarioStore();
+
+const bolhas = [
+  { top: "10%", left: "5%", size: "150px"},
+  { top: "20%", left: "80%", size: "100px"},
+  { top: "70%", left: "10%", size: "120px"},
+  { top: "80%", left: "70%", size: "180px"},
+  { top: "50%", left: "50%", size: "90px"},
+  { top: "30%", left: "40%", size: "130px"},
+  { top: "60%", left: "20%", size: "110px"},
+  { top: "40%", left: "80%", size: "140px"},
+];
+
+const defaultUsuario = {
+  id_usuario: 0,
+  nome: '',
+  email: '',
+  senha: '',
+  confirmarSenha: '',
+  telefone: ''
 };
 
+const usuario = reactive({ ...defaultUsuario });
+
+const isEditing = computed(() => usuario.id_usuario && usuario.id_usuario !== 0);
+
+function resetForm() {
+  Object.assign(usuario, { ...defaultUsuario });
+}
+
+onMounted(async () => {
+  await usuarioStore.getUsuarios();
+});
+
+async function SubmitUsuario() {
+  if (usuario.senha !== usuario.confirmarSenha) {
+    alert('As senhas não coincidem!');
+    return;
+  }
+
+  const payload = {
+    nome: usuario.nome,
+    email: usuario.email,
+    telefone: usuario.telefone,
+    password: usuario.senha
+  };
+
+  try {
+    if (isEditing.value) {
+      payload.id_usuario = usuario.id_usuario;
+      await usuarioStore.updateUsuario(payload);
+    } else {
+      await usuarioStore.addUsuario(payload);
+    }
+    resetForm();
+    await usuarioStore.getUsuarios();
+  } catch (error) {
+    console.error('Erro ao salvar usuário:', error);
+    alert('Ocorreu um erro ao salvar o usuário. Veja o console para detalhes.');
+  }
+}
 </script>
+
 <template>
   <div class="app">
   <div v-for="(bolha, index) in bolhas" :key="index"
@@ -33,22 +80,26 @@ export default {
     <h2>
       CRIE SUA CONTA
     </h2>
-    <form action="get">
+    <form @submit.Prevent="SubmitUsuario">
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-account"></i></span>
-      <input type="text" placeholder="Nome Completo" />
+      <input type="text" placeholder="Nome Completo" id="nome" v-model="usuario.nome" />
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-email"></i></span>
-      <input type="email" placeholder="Email" />
+      <input type="email" placeholder="Email" id="email" v-model="usuario.email"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Senha" />
+      <input type="password" placeholder="Senha" id="senha" v-model="usuario.senha"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Confirme sua senha" />
+      <input type="password" placeholder="Confirme sua senha" id="confirmar" v-model="usuario.confirmarSenha" />
+      </div>
+      <div class="input-field">
+        <span class="icon"><i class="mdi mdi-phone"></i></span>
+        <input type="number" placeholder="Telefone" id="telefone" v-model="usuario.telefone"/>
       </div>
       <button type="submit">Cadastrar</button>
     </form>
