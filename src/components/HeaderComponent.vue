@@ -11,6 +11,12 @@
             </video>
             <div class="header-content">
               <img :src="logo" alt="Logo" class="logo">
+
+              <div class="menu-hamburguer">
+              <div class="barra1"></div>
+              <div class="barra2"></div>
+              <div class="barra3"></div>
+              </div>
               <ul>
                 <li><a href="#">Cadastre-se</a></li>
                 <li><a href="#">Mapa</a></li>
@@ -137,4 +143,51 @@ img.logo {
   border: 1px solid rgba(255, 255, 255, 0.25);
   text-align: center;
 }
+/*//////////////////responsividade//////////////////*/
+
+
+    .menu-hamburguer div {
+      width: 32px;
+      height: 2px;
+      background-color: #fff;
+
+      margin: 8px;
+    }
+    .menu-hamburguer{
+    cursor: pointer;
+    display: none;
+    }
+@media (max-width: 748px) {
+
+  .pagina{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-color:rgb(255, 255, 255);
+    opacity: 20%;
+
+
+
+  }
+  .header-content ul {
+    display: none;
+
+  }
+  .menu-hamburguer{
+    display: block;
+    margin-top: 2vw;
+
+  }
+  img.logo {
+    height: 8vh;
+
+  }
+  .do {
+
+  }
+  .meio{
+    display: none;
+  }
+}
+
 </style>
