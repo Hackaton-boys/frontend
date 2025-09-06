@@ -13,18 +13,22 @@
               <img :src="logo" alt="Logo" class="logo">
 
               <div class="menu-hamburguer" @click="botao()">
-              <div class="barra1"></div>
-              <div class="barra2"></div>
-              <div class="barra3"></div>
+              <div class="barra1" :style="{ backgroundColor: '#ccc' }"></div>
+              <div class="barra2" :style="{ backgroundColor: '#ccc' }"></div>
+              <div class="barra3" :style="{ backgroundColor: '#ccc'  }"></div>
               </div>
-              <ul class="ddescraparece" v-if="!menuAtivo">
+
+              <ul v-if="!menuAtivo" class="menu">
                 <li><a href="#">Cadastre-se</a></li>
                 <li><a href="#">Mapa</a></li>
                 <li><a href="#">Reservar</a></li>
                 <li><a href="#">Sobre Nós</a></li>
 
               </ul>
-              <ul v-if="menuAtivo">
+
+
+
+              <ul v-else>
                 <li><a href="#">Cadastre-se</a></li>
                 <li><a href="#">Mapa</a></li>
                 <li><a href="#">Reservar</a></li>
@@ -32,13 +36,14 @@
 
 
               </ul>
+
 
             </div>
           </nav>
 
-          <div class="meio">
-            <div class="vidro">
-              <h1 class="do">SEJA A MARÉ<br> DA <br>MUDANÇA</h1>
+          <div class="meio" :style="{ filter: menuAtivo ? 'blur(10px)' : 'none', transition: 'filter 3s ease' }">
+            <div class="vidro" >
+              <h1 class="do" >SEJA A MARÉ<br> DA <br>MUDANÇA</h1>
             </div>
           </div>
         </header>
@@ -54,37 +59,23 @@ import videoUrl from '@/assets/videoteste.mp4'
 import logo from '@/imgs/MARE VERDE.png'
 import { ref } from 'vue';
 
+
+
+
+
+//respsonsivo
+
     let menuAtivo = ref(false);
-
-//const widthTela = window.innerWidth;
-
-//function respsonsivo(){
-  //if(widthTela > 748){
-    //menuAtivo.value = true;
-
-  //}
-  //else{
-    //menuAtivo.value = false;
-  //}
-//}
-
-//respsonsivo()
-
 function botao() {
   if(menuAtivo.value === true){
     menuAtivo.value = false;
-
- document.querySelector('.barra1').style.display = 'block';
-
-     document.querySelector('.barra3').style.display = 'block';
-
+    document.querySelector('.barra1').style.display = 'block';
+    document.querySelector('.barra3').style.display = 'block';
   }
   else{
     menuAtivo.value = true;
-
-      document.querySelector('.barra1').style.display = 'none';
-
-     document.querySelector('.barra3').style.display = 'none';
+    document.querySelector('.barra1').style.display = 'none';
+    document.querySelector('.barra3').style.display = 'none';
 
   }
 }
@@ -193,9 +184,9 @@ img.logo {
 
 
     .menu-hamburguer div {
-      width: 32px;
-      height: 2px;
-      background-color: #fff;
+      width: 9vw;
+      height: 3px;
+      background-color: #f4eeee;
 
       margin: 8px;
     }
@@ -203,27 +194,25 @@ img.logo {
     cursor: pointer;
     display: none;
     }
-@media (max-width: 748px) {
+@media (max-width: 670px) {
+
   @keyframes aparecer {
     0% {opacity: 0;}
     20% {opacity: 1;}
 
   }
+  @keyframes desaparecer {
+    0% {opacity: 1;}
+    20% {opacity: 0;}
+  }
+
   .pagina{
     width: 100%;
     height: 100vh;
-
-    z-index: -1;
-
-
-
-
-
   }
-  .ddescraparece{
+  ul.menu{
     display: none;
   }
-
   .video-bg {
     filter: blur(3px);
   }
@@ -233,35 +222,26 @@ img.logo {
     top: 20vh;
     left: 0;
     gap: 10vw;
-
     align-items: center;
-
     width: 100vw;
-
-
-    justify-content: space-around;
-    font-size: 1rem;
     animation: aparecer 5s ease-in-out;
-
-
-
+    justify-content: space-around;
+    font-size: 1.5rem;
   }
   .menu-hamburguer{
     display: block;
     margin-top: 2vw;
-
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(5px);
+      border-radius: 2px;
+      height: 100%;
   }
   img.logo {
     height: 8vh;
     z-index: 1;
+  }
 
-  }
-  .do {
 
-  }
-  .meio{
-    display: none;
-  }
 }
 
 </style>
