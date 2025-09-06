@@ -5,24 +5,34 @@
       <div class="pagina">
         <header>
           <nav>
-            <video autoplay muted loop playsinline class="video-bg">
+            <video autoplay muted loop playsinline class="video-bg" :style="{ filter: menuAtivo ? 'blur(5px)' : 'none', transition: 'filter 3s ease' }">
               <source :src="videoUrl" type="video/mp4" />
               Seu navegador não suporta vídeos HTML5.
             </video>
             <div class="header-content">
               <img :src="logo" alt="Logo" class="logo">
 
-              <div class="menu-hamburguer">
+              <div class="menu-hamburguer" @click="botao()">
               <div class="barra1"></div>
               <div class="barra2"></div>
               <div class="barra3"></div>
               </div>
-              <ul>
+              <ul class="ddescraparece" v-if="!menuAtivo">
                 <li><a href="#">Cadastre-se</a></li>
                 <li><a href="#">Mapa</a></li>
                 <li><a href="#">Reservar</a></li>
                 <li><a href="#">Sobre Nós</a></li>
+
               </ul>
+              <ul v-if="menuAtivo">
+                <li><a href="#">Cadastre-se</a></li>
+                <li><a href="#">Mapa</a></li>
+                <li><a href="#">Reservar</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+
+
+              </ul>
+
             </div>
           </nav>
 
@@ -42,6 +52,42 @@
 <script setup>
 import videoUrl from '@/assets/videoteste.mp4'
 import logo from '@/imgs/MARE VERDE.png'
+import { ref } from 'vue';
+
+    let menuAtivo = ref(false);
+
+//const widthTela = window.innerWidth;
+
+//function respsonsivo(){
+  //if(widthTela > 748){
+    //menuAtivo.value = true;
+
+  //}
+  //else{
+    //menuAtivo.value = false;
+  //}
+//}
+
+//respsonsivo()
+
+function botao() {
+  if(menuAtivo.value === true){
+    menuAtivo.value = false;
+
+ document.querySelector('.barra1').style.display = 'block';
+
+     document.querySelector('.barra3').style.display = 'block';
+
+  }
+  else{
+    menuAtivo.value = true;
+
+      document.querySelector('.barra1').style.display = 'none';
+
+     document.querySelector('.barra3').style.display = 'none';
+
+  }
+}
 </script>
 
 <style scoped>
@@ -158,19 +204,46 @@ img.logo {
     display: none;
     }
 @media (max-width: 748px) {
+  @keyframes aparecer {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
 
+  }
   .pagina{
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-color:rgb(255, 255, 255);
-    opacity: 20%;
+
+    z-index: -1;
+
+
 
 
 
   }
-  .header-content ul {
+  .ddescraparece{
     display: none;
+  }
+
+  .video-bg {
+    filter: blur(3px);
+  }
+  .header-content ul {
+    position: absolute;
+    flex-direction: column;
+    top: 20vh;
+    left: 0;
+    gap: 10vw;
+
+    align-items: center;
+
+    width: 100vw;
+
+
+    justify-content: space-around;
+    font-size: 1rem;
+    animation: aparecer 5s ease-in-out;
+
+
 
   }
   .menu-hamburguer{
@@ -180,6 +253,7 @@ img.logo {
   }
   img.logo {
     height: 8vh;
+    z-index: 1;
 
   }
   .do {
