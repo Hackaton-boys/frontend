@@ -13,9 +13,9 @@
               <img :src="logo" alt="Logo" class="logo">
 
               <div class="menu-hamburguer" @click="botao()">
-              <div class="barra1" :style="{ backgroundColor: '#ccc' }"></div>
-              <div class="barra2" :style="{ backgroundColor: '#ccc' }"></div>
-              <div class="barra3" :style="{ backgroundColor: '#ccc'  }"></div>
+              <div class="barra1"></div>
+              <div class="barra2"></div>
+              <div class="barra3"></div>
               </div>
 
               <ul v-if="!menuAtivo" class="menu">
@@ -25,23 +25,18 @@
                 <li><a href="#">Sobre Nós</a></li>
 
               </ul>
-
-
-
               <ul v-else>
                 <li><a href="#">Cadastre-se</a></li>
                 <li><a href="#">Mapa</a></li>
                 <li><a href="#">Reservar</a></li>
                 <li><a href="#">Sobre Nós</a></li>
-
-
               </ul>
 
 
             </div>
           </nav>
 
-          <div class="meio" :style="{ filter: menuAtivo ? 'blur(10px)' : 'none', transition: 'filter 3s ease' }">
+          <div class="meio" :style="{ filter: menuAtivo ? 'opacity(0.2%)' : 'none', transition: 'filter 1.5s ease' }">
             <div class="vidro" >
               <h1 class="do" >SEJA A MARÉ<br> DA <br>MUDANÇA</h1>
             </div>
@@ -63,9 +58,9 @@ import { ref } from 'vue';
 
 
 
-//respsonsivo
+//responsivo
 
-    let menuAtivo = ref(false);
+  let menuAtivo = ref(false);
 function botao() {
   if(menuAtivo.value === true){
     menuAtivo.value = false;
@@ -160,14 +155,13 @@ img.logo {
   text-align: center;
   margin: 0;
   display: block;
-  /* remove o flex que estava antes */
+  font-size: 3.5rem;
 }
 
 .conteudo {
   background-color: white;
   color: #333;
 }
-
 .vidro {
   padding: 40px 60px;
   background: rgba(255, 255, 255, 0.12);
@@ -181,31 +175,31 @@ img.logo {
   text-align: center;
 }
 /*//////////////////responsividade//////////////////*/
-
-
     .menu-hamburguer div {
       width: 9vw;
       height: 3px;
       background-color: #f4eeee;
-
       margin: 8px;
     }
     .menu-hamburguer{
     cursor: pointer;
     display: none;
     }
+
 @media (max-width: 670px) {
 
   @keyframes aparecer {
     0% {opacity: 0;}
     20% {opacity: 1;}
+    50% {opacity: 1;}
+    80% {opacity: 1;}
+    100% {opacity: 1;}
 
   }
   @keyframes desaparecer {
     0% {opacity: 1;}
     20% {opacity: 0;}
   }
-
   .pagina{
     width: 100%;
     height: 100vh;
@@ -216,6 +210,10 @@ img.logo {
   .video-bg {
     filter: blur(3px);
   }
+  .do {
+    font-size: 1.5rem;
+  }
+
   .header-content ul {
     position: absolute;
     flex-direction: column;
@@ -239,9 +237,10 @@ img.logo {
   img.logo {
     height: 8vh;
     z-index: 1;
+    margin-left: 2vw;
+    margin-top: 1vw;
+    
   }
-
-
 }
 
 </style>
