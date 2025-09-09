@@ -135,6 +135,7 @@ div.app {
     opacity: 0.8;
     background: radial-gradient(circle at 190% 30%, #BDD5d9, #285b6c);
     animation: flutuar 6s ease-in-out infinite alternate;
+    margin: 100vh 0;
   }
   @keyframes flutuar {
     from {
@@ -144,5 +145,34 @@ div.app {
       transform: translateY(-60px) scale(1.05);
     }
   }
+ @media(max-width: 600px) {
+  div.formulario {
+    width: 90%;
+    padding: 20px;
+
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  form {
+    width: 100%;
+  }
+  .input-field {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .input-field .icon {
+    font-size: 1rem;
+  }
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .bolha {
+    display: none;
+  }
+  
+
+ }
 </style>
 

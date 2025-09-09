@@ -26,7 +26,7 @@ onMounted(async () => {
       </div>
     `
     L.marker(ponto.coords).addTo(map).bindPopup(popupContent)
-      { autoPan: false } // ⚠️ desativa o movimento do mapa ao abrir
+  
   })
 
   setTimeout(() => {
