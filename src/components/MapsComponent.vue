@@ -26,7 +26,6 @@ onMounted(async () => {
       </div>
     `
     L.marker(ponto.coords).addTo(map).bindPopup(popupContent)
-      { autoPan: false } // ⚠️ desativa o movimento do mapa ao abrir
   })
 
   setTimeout(() => {
@@ -50,7 +49,7 @@ onMounted(async () => {
   place-items: center;
 }
 h2.mid {
-  font-size: 1.5vw;
+  font-size: 3rem;
   color: white;
   margin-top: 2vw;
 }
@@ -60,11 +59,28 @@ h2.mid {
   font-size: 1.1vw;
   color: rgba(234, 234, 234, 0.734);
   padding: 0.2vw 0;
+  margin: 1vh 0;
 }
 .map {
   border-radius: 10px;
   border: #bdd5d9 4px solid;
   width: 80%;
   height: 600px;
+}
+@media (max-width: 768px) {
+  .map {
+    width: 90%;
+    height: 300px;
+    margin: 3vh 0;
+  }
+  h2.mid {
+    font-size: 1.5rem;
+    margin-top: 4vw;
+  }
+  .mid {
+    font-size: 1rem;
+    text-align: center;
+  }
+
 }
 </style>
