@@ -1,8 +1,11 @@
 <script setup>
-
+import HeaderComponent from './components/HeaderComponent.vue';
 </script>
+
 <template>
-  
-  <routerView />
+  <HeaderComponent />
 </template>
 
+<style scoped>
+
+</style>
