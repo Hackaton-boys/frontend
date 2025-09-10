@@ -1,10 +1,6 @@
 <script setup>
 import videoUrl from '@/assets/videoteste.mp4'
 import logo from '@/imgs/MARE VERDE.png'
-
-const { setSection } = defineProps({
-  setSection: Function
-})
 </script>
 
 <template>
@@ -18,10 +14,11 @@ const { setSection } = defineProps({
         <div class="header-content">
           <img :src="logo" alt="Logo" class="logo">
           <ul>
-            <li><a href="#" @click.prevent="setSection('cadastro')">Cadastre-se</a></li>
-            <li><a href="#" @click.prevent="setSection('mapa')">Mapa</a></li>
-            <li><a href="#" @click.prevent="setSection('reservar')">Reservar</a></li>
-            <li><a href="#" @click.prevent="setSection('sobre')">Sobre Nós</a></li>
+            <!-- agora usamos <router-link> -->
+            <li><router-link to="/cadastro">Cadastre-se</router-link></li>
+            <li><router-link to="/maps">Mapa</router-link></li>
+            <li><router-link to="">Reservar</router-link></li>
+            <li><router-link to="">Sobre Nós</router-link></li>
           </ul>
         </div>
       </nav>
@@ -33,8 +30,8 @@ const { setSection } = defineProps({
       </div>
     </header>
 
-    <main>
-    </main>
+    <!-- aqui renderizam as rotas -->
+    <router-view />
   </div>
 </template>
 

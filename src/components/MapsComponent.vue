@@ -4,8 +4,18 @@ import L from 'leaflet'
 import "leaflet/dist/leaflet.css"
 
 const pontos = [
-  { coords: [-26.457426, -48.598263], nome: 'Escola Adalziza Leonida de Souza Cunha',endereco: 'Av. Amândio Cabral, 1501', foto: '/residencias/residencia1.jpg' },
-  { coords: [-26.462792, -48.609324], nome: 'Prefeitura de Balneário Barra do Sul',endereco: 'R. Joaquim João Luiz, 216', foto: '/residencias/residencia2.jpg' }
+  { 
+    coords: [-26.457426, -48.598263], 
+    nome: 'Escola Adalziza Leonida de Souza Cunha',
+    endereco: 'Av. Amândio Cabral, 1501', 
+    foto: '/residencias/residencia1.jpg',
+  },
+  { 
+    coords: [-26.462792, -48.609324], 
+    nome: 'Prefeitura de Balneário Barra do Sul',
+    endereco: 'R. Joaquim João Luiz, 216', 
+    foto: '/residencias/residencia2.jpg',
+    }
 ]
 
 onMounted(async () => {
@@ -18,15 +28,18 @@ onMounted(async () => {
   }).addTo(map)
 
   pontos.forEach(ponto => {
+  
+
     const popupContent = `
       <div style="text-align:center">
         <h3>${ponto.nome}</h3>
         <p>${ponto.endereco}</p>
-        <img src="${ponto.foto}" alt="${ponto.nome}" style="width:200px; border-radius:8px; margin-top:-10px; border:2px solid; black" />
+        <img src="${ponto.foto}" alt="${ponto.nome}" style="width:200px; border-radius:8px; margin-top:-10px; border:2px solid black" />
       </div>
     `
-    L.marker(ponto.coords).addTo(map).bindPopup(popupContent)
-      { autoPan: false } // ⚠️ desativa o movimento do mapa ao abrir
+    L.marker(ponto.coords)
+      .addTo(map)
+      .bindPopup(popupContent, { autoPan: false })
   })
 
   setTimeout(() => {
@@ -34,6 +47,7 @@ onMounted(async () => {
   }, 300)
 })
 </script>
+
 
 <template>
   <section class="map-text">
