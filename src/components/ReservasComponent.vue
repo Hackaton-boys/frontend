@@ -55,7 +55,7 @@ div.geral{
     height: 100vh;
     background-color: #215567;
     overflow: hidden;
-
+    
 }
 h1{
   margin: 4vw 0 0 0;
@@ -127,6 +127,7 @@ button{
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
       z-index: 1;
+      margin: 25vw 0;
 
 }
     .bolha2 {
@@ -136,6 +137,7 @@ button{
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
        z-index: 1;
+       margin: 73vw 0 ;
 
 
 
@@ -145,6 +147,7 @@ button{
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
        z-index: 1;
+       margin: 20vw 0;
 
     }
     .bolha4 {
@@ -153,6 +156,7 @@ button{
       height: 100px;
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
+      margin: 40vw 0 
 
     }
     .bolha5 {
@@ -161,6 +165,7 @@ button{
       height: 100px;
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
+      margin: 75vw 0 ;
 
     }
 

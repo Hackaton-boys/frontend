@@ -15,10 +15,10 @@ import logo from '@/imgs/MARE VERDE.png'
           <img :src="logo" alt="Logo" class="logo">
           <ul>
             <!-- agora usamos <router-link> -->
-            <li><router-link to="/cadastro">Cadastre-se</router-link></li>
+            <li><router-link to="/login">Faça Login</router-link></li>
             <li><router-link to="/maps">Mapa</router-link></li>
-            <li><router-link to="">Reservar</router-link></li>
-            <li><router-link to="">Sobre Nós</router-link></li>
+            <li><router-link to="/reservas">Reservar</router-link></li>
+            <li><router-link to="/sobre">Sobre Nós</router-link></li>
           </ul>
         </div>
       </nav>
