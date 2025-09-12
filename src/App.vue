@@ -1,9 +1,11 @@
 <script setup>
-
-import ReservasComponent from './components/ReservasComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 </script>
+
 <template>
-<ReservasComponent/>
+  <HeaderComponent />
 </template>
+
 <style scoped>
+
 </style>
