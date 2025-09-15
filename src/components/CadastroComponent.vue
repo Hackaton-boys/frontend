@@ -61,6 +61,7 @@ export default {
 div.app {
  background-color: #215567;
 }
+
   div.container {
     position: relative;
     display: flex;
@@ -146,5 +147,6 @@ div.app {
       transform: translateY(-60px) scale(1.05);
     }
   }
+  
 </style>
 
