@@ -4,16 +4,16 @@ import L from 'leaflet'
 import "leaflet/dist/leaflet.css"
 
 const pontos = [
-  { 
-    coords: [-26.457426, -48.598263], 
+  {
+    coords: [-26.457426, -48.598263],
     nome: 'Escola Adalziza Leonida de Souza Cunha',
-    endereco: 'Av. Amândio Cabral, 1501', 
+    endereco: 'Av. Amândio Cabral, 1501',
     foto: '/residencias/residencia1.jpg',
   },
-  { 
-    coords: [-26.462792, -48.609324], 
+  {
+    coords: [-26.462792, -48.609324],
     nome: 'Prefeitura de Balneário Barra do Sul',
-    endereco: 'R. Joaquim João Luiz, 216', 
+    endereco: 'R. Joaquim João Luiz, 216',
     foto: '/residencias/residencia2.jpg',
     }
 ]
@@ -28,7 +28,7 @@ onMounted(async () => {
   }).addTo(map)
 
   pontos.forEach(ponto => {
-  
+
 
     const popupContent = `
       <div style="text-align:center">
@@ -64,9 +64,14 @@ onMounted(async () => {
   place-items: center;
 }
 h2.mid {
-  font-size: 1.5vw;
+  font-size: 1.8rem;
   color: white;
   margin-top: 2vw;
+}
+p.mid{
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 3vh 10vw;
 }
 .mid {
   display: flex;
@@ -80,5 +85,6 @@ h2.mid {
   border: #bdd5d9 4px solid;
   width: 80%;
   height: 600px;
+  margin-bottom: 5vh;
 }
 </style>

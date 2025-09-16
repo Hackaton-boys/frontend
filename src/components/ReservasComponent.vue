@@ -55,7 +55,7 @@ div.geral{
     height: 100vh;
     background-color: #215567;
     overflow: hidden;
-    
+
 }
 h1{
   margin: 4vw 0 0 0;
@@ -72,6 +72,7 @@ form{
   border: none;
   outline: none;
   z-index: 2;
+
 }
 .nome{
   margin: 3vw 0 1vw 0;
@@ -156,7 +157,7 @@ button{
       height: 100px;
       background-image: linear-gradient( 320deg, #215567, #BED6DA);
       border-radius: 50%;
-      margin: 40vw 0 
+      margin: 40vw 0
 
     }
     .bolha5 {
@@ -215,4 +216,30 @@ button{
     div.bolha4 { top: 40%; left: 30%; width: 110px; height: 110px; }
     div.bolha5 { top: 12%; left: 7%; width: 80px; height: 80px; }
   }
+
+  .bolha1{
+
+    margin-top: 100vh;
+
+  }
+  .bolha2{
+
+    margin-top: 110vh;
+
+  }
+  .bolha3{
+    margin-top: 100vh;
+
+  }
+  .bolha4{
+    margin-top: 100vh;
+
+  }
+  .bolha5{
+    margin-top: 100vh;
+  }
+
+
+
+
 </style>
