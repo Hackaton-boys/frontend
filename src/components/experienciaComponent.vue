@@ -191,6 +191,10 @@ button:hover {
   font-size: 14px;
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.7);
 }
+.card-comentario p {
+  color: black;
+  padding: 0 0 0 1vw;
+}
 
 .cabecalho {
   display: flex;
@@ -210,6 +214,7 @@ button:hover {
 .nome {
   font-size: 12px;
   margin-right: auto;
+  color: black;
 }
 
 .estrelas .estrela {

@@ -19,17 +19,17 @@
               </div>
 
               <ul v-if="!menuAtivo" class="menu">
-                <li><router-link to="/login">Login</router-link></li>
+                <li><router-link to="/login">Faça Login</router-link></li>
                 <li><router-link to="/maps">Mapa</router-link></li>
-                <li><router-link to="/reservas">Reservar</router-link></li>
-                <li><router-link to=""></router-link></li>
+                <li><router-link to="/reservas">Reserve uma Ecobag</router-link></li>
+                <li><router-link to="/sobre">Sobre Nós</router-link></li>
 
               </ul>
               <ul v-else>
                 <li><router-link to="/login">login</router-link></li>
                 <li><router-link to="/maps">Mapa</router-link></li>
-                <li><a href="#">Reservar</a></li>
-                <li><a href="#">Sobre Nós</a></li>
+                <li><router-link to="/reservas">Reserve uma Ecobag</router-link></li>
+                <li><router-link to="/sobre">Sobre Nós</router-link></li>
               </ul>
 
 
