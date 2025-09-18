@@ -2,12 +2,12 @@
 
 
 const integrantes = [
-  { nome: 'Davi Dos Passos', funcao: 'Des. Frontend' },
-  { nome: 'Gianluca Gadotti', funcao: 'Des. Backend' },
-  { nome: 'Gustavo Alves', funcao: 'Designer UI/UX' },
-  { nome: 'João P> Bachamann', funcao: 'Gerente de Projeto' },
-  { nome: 'José Neto', funcao: 'Anal. de Qualidade' },
-  { nome: 'Luiz Roberto', funcao: 'Espec. em Marketing' },
+  { nome: 'Davi Dos Passos', funcao: 'Designer' },
+  { nome: 'Gianluca Gadotti', funcao: 'Des. Frontend' },
+  { nome: 'Gustavo Alves', funcao: 'Des. Frontend' },
+  { nome: 'João P> Bachamann', funcao: 'Des. Backend' },
+  { nome: 'José Neto', funcao: 'Des. Backend' },
+  { nome: 'Luiz Roberto', funcao: 'Designer' },
 ];
 
 
@@ -37,7 +37,7 @@ const integrantes = [
      <div class="nosso">
       <h2>NOSSO OBJETIVO</h2>
 
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard  dummy text ever since the 1500s, when an unknown printer took a galley  of type and scrambled it to make a type specimen book. It has survived  not only five centuries, but also the leap into electronic typesetting,  remaining essentially unchanged. It was popularised in the 1960s with  the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker  including versions of Lorem Ipsum.</p>
+      <p>Nosso objetivo conscientizar as pessoas sobre a importância da responsabilidade dos resíduos, e busca oferecer formas de realizar de descartar esses resíduos de forma que não afete o meio ambiente. E gerar mais força para o projeto ja existente em Balneário Barra do Sul</p>
      </div>
 
 
@@ -150,7 +150,7 @@ div.nosso p{
   }
   div.nosso p {
     font-size: 1.2rem;
-    
+
 
   text-align: left;
   text-justify: inter-word; /* melhora um pouco a distribuição */
