@@ -22,7 +22,5 @@ onMounted(() => {
   <RouterView />
   <BolhaLogin />
 </template>
-
 <style scoped>
-
 </style>

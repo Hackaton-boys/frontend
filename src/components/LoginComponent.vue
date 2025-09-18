@@ -1,13 +1,47 @@
 <script setup>
+import { reactive } from 'vue';
+import axios from 'axios';
+import { useLoginStore } from '@/stores/usuario'
 
+const loginStore = useLoginStore()
 
-     const bolhas= [
-        { top: "10%", left: "5%", size: "150px" },
-        { top: "20%", left: "70%", size: "120px" },
-        { top: "60%", left: "80%", size: "200px" },
-        { top: "75%", left: "15%", size: "100px" },
-        { top: "40%", left: "40%", size: "180px" },
-]
+// bolhas decorativas
+const bolhas = [
+  { top: "10%", left: "5%", size: "150px" },
+  { top: "20%", left: "70%", size: "120px" },
+  { top: "60%", left: "80%", size: "200px" },
+  { top: "75%", left: "15%", size: "100px" },
+  { top: "40%", left: "40%", size: "180px" }
+];
+
+const payload = reactive({
+  username: '',
+  password: '',
+})
+
+async function submitForm(){
+  const formData = {
+    email: payload.email,
+    password: payload.password
+  }
+  try{
+    axios.defaults.headers.common['Authorization'] = ''
+
+    const response = await axios.post('/auth/v1/token/login', formData)
+
+      const token = response.data.auth_token
+
+      loginStore.setToken('token', token)
+
+      console.log(token)
+
+      alert('Login realizado com sucesso')
+  }
+  catch(err){
+    console.log(err.response?.data || err.message )
+  }
+}
+
 </script>
 
 <template>
@@ -24,19 +58,18 @@
     <div class="login-box">
       <h2>LOGIN</h2>
 
-      <form class="form">
+      <form class="form" @submit.prevent="submitForm">
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-email"></i></span>
-          <input type="email" placeholder="Email" />
+          <input type="email" name="email" v-model="payload.email" placeholder="Email" />
         </div>
 
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <input type="password" placeholder="Senha" />
+          <input type="password" name="password" v-model="payload.password" placeholder="Senha" />
         </div>
 
-        <p>Não tem uma conta?</p>
-        <p class="cadastro"><router-link to="/cadastro">Cadastre-se</router-link></p>
+        <p class="cadastro">Cadastre-se</p>
 
         <button type="submit" class="btn-login">Login</button>
       </form>
@@ -62,7 +95,7 @@
   position: absolute;
   border-radius: 50%;
   opacity: 0.8;
-  
+
   /* Degradê esférico estilo reflexo */
   background: radial-gradient(circle at 190% 30%, #bdd5d9, #215567);
 
@@ -122,8 +155,8 @@
 
 /* Texto de cadastro */
 .cadastro {
-  margin: -1px 0;
-  font-size: 1rem;
+  margin: 10px 0;
+  font-size: 0.9rem;
   cursor: pointer;
   opacity: 0.9;
 }
@@ -202,3 +235,8 @@
   }
 }
 </style>
+<!-- Adicionei animação de flutuação nas bolhas e um efeito de blur no fundo do card de login para um visual mais moderno -->
+<!-- Usei ícones da Material Design Icons (mdi) para os inputs -->
+<!-- Certifique-se de incluir a biblioteca de ícones no seu projeto -->
+<!-- Exemplo de inclusão via CDN no index.html: -->
+<!-- <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" rel="stylesheet"> -->

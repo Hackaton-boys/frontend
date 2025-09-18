@@ -1,4 +1,22 @@
-    <template>
+<script setup>
+import videoUrl from '@/assets/videoteste.mp4'
+import logo from '@/imgs/MARE VERDE.png'
+import { ref } from 'vue'
+let menuAtivo = ref(false);
+function botao() {
+  if(menuAtivo.value === true){
+    menuAtivo.value = false;
+    document.querySelector('.barra1').style.display = 'block';
+    document.querySelector('.barra3').style.display = 'block';
+  }
+  else{
+    menuAtivo.value = true;
+    document.querySelector('.barra1').style.display = 'none';
+    document.querySelector('.barra3').style.display = 'none';
+  }
+}
+</script>
+<template>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Oranienbaum&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -48,58 +66,6 @@
         </main>
       </div>
     </template>
-
-<script setup>
-import videoUrl from '@/assets/videoteste.mp4'
-import logo from '@/imgs/MARE VERDE.png'
-let menuAtivo = ref(false);
-function botao() {
-  if(menuAtivo.value === true){
-    menuAtivo.value = false;
-    document.querySelector('.barra1').style.display = 'block';
-    document.querySelector('.barra3').style.display = 'block';
-  }
-  else{
-    menuAtivo.value = true;
-    document.querySelector('.barra1').style.display = 'none';
-    document.querySelector('.barra3').style.display = 'none';
-  }
-}
-</script>
-
-<template>
-  <div class="pagina">
-    <header>
-      <nav>
-        <video autoplay muted loop playsinline class="video-bg">
-          <source :src="videoUrl" type="video/mp4" />
-          Seu navegador não suporta vídeos HTML5.
-        </video>
-        <div class="header-content">
-          <img :src="logo" alt="Logo" class="logo">
-          <ul>
-            <li>
-              <Router-link to='/cadastro'>Cadastre-se</Router-link>
-            </li>
-            <li>
-              <Router-link to='/mapa'>Mapas</Router-link>
-            </li>
-            <li>
-              <Router-link to='/login'>Login</Router-link>
-            </li>
-            <li>
-              <Router-link to='/digasuaexperiencia'>Experiencia</Router-link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="meio">
-        <div class="vidro">
-          <h1 class="do">SEJA A MARÉ<br> DA <br>MUDANÇA</h1>
-        </div>
-      </div>
-    </header>
 <style scoped>
 /* Header com vídeo de fundo */
 header {
@@ -259,7 +225,7 @@ img.logo {
     z-index: 1;
     margin-left: 2vw;
     margin-top: 1vw;
-    
+
   }
 }
 
