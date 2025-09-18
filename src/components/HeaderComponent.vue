@@ -52,15 +52,7 @@
 <script setup>
 import videoUrl from '@/assets/videoteste.mp4'
 import logo from '@/imgs/MARE VERDE.png'
-import { ref } from 'vue';
-
-
-
-
-
-//responsivo
-
-  let menuAtivo = ref(false);
+let menuAtivo = ref(false);
 function botao() {
   if(menuAtivo.value === true){
     menuAtivo.value = false;
@@ -71,11 +63,43 @@ function botao() {
     menuAtivo.value = true;
     document.querySelector('.barra1').style.display = 'none';
     document.querySelector('.barra3').style.display = 'none';
-
   }
 }
 </script>
 
+<template>
+  <div class="pagina">
+    <header>
+      <nav>
+        <video autoplay muted loop playsinline class="video-bg">
+          <source :src="videoUrl" type="video/mp4" />
+          Seu navegador não suporta vídeos HTML5.
+        </video>
+        <div class="header-content">
+          <img :src="logo" alt="Logo" class="logo">
+          <ul>
+            <li>
+              <Router-link to='/cadastro'>Cadastre-se</Router-link>
+            </li>
+            <li>
+              <Router-link to='/mapa'>Mapas</Router-link>
+            </li>
+            <li>
+              <Router-link to='/login'>Login</Router-link>
+            </li>
+            <li>
+              <Router-link to='/digasuaexperiencia'>Experiencia</Router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="meio">
+        <div class="vidro">
+          <h1 class="do">SEJA A MARÉ<br> DA <br>MUDANÇA</h1>
+        </div>
+      </div>
+    </header>
 <style scoped>
 /* Header com vídeo de fundo */
 header {
@@ -165,11 +189,7 @@ img.logo {
 .vidro {
   padding: 40px 60px;
   background: rgba(255, 255, 255, 0.12);
-  /* transparência mais suave */
-  backdrop-filter: blur(2px);
-  /* efeito de vidro */
-  -webkit-backdrop-filter: blur(12px);
-  /* Safari */
+  backdrop-filter: blur(4px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   text-align: center;

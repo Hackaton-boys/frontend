@@ -1,99 +1,96 @@
-<template>
-  <div class="fundo">
-    <!-- Bolhas -->
-    <div
-      v-for="(bubble, index) in bubbles"
-      :key="index"
-      class="bolha"
-      :style="{
-        top: bubble.top,
-        left: bubble.left,
-        width: bubble.size,
-        height: bubble.size,
-        animationDelay: bubble.delay
-      }"
-    ></div>
+<script setup>
+import { ref, onMounted, } from 'vue';
+import axios from 'axios';
+import { useLoginStore } from '@/stores/usuario'
 
-    <!-- Título -->
-    <h1>DESCREVA SUA EXPERIÊNCIA</h1>
-
-    <!-- Caixa de Comentário -->
-    <div class="comentario-box">
-      <textarea
-        v-model="novoComentario"
-        placeholder="Escreva seu comentário..."
-      ></textarea>
-
-      <div class="avaliacao">
-        <span
-          v-for="n in 5"
-          :key="n"
-          class="estrela"
-          :class="{ ativa: n <= nota }"
-          @click="nota = n"
-        >★</span>
-      </div>
-
-      <button @click="enviarComentario">Enviar</button>
-    </div>
-
-    <!-- Lista de Comentários -->
-    <div class="comentarios">
-      <div
-        v-for="(coment, index) in comentarios"
-        :key="index"
-        class="card-comentario"
-      >
-        <div class="cabecalho">
-          <div class="avatar"></div>
-          <div class="nome">nome usuario</div>
-          <div class="estrelas">
-            <span v-for="n in 5" :key="n" class="estrela" :class="{ ativa: n <= coment.nota }">★</span>
-          </div>
-          <button class="btn-remover" @click="removerComentario(index)">✖</button>
-        </div>
-        <p>{{ coment.texto }}</p>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      novoComentario: "",
-      nota: 0,
-      comentarios: JSON.parse(localStorage.getItem("comentarios") || "[]"),
-      bubbles: [
+  const loginStore = useLoginStore()
+  const bolhas = [
         { top: '5%', left: '10%', size: '60px', delay: '0s' },
         { top: '15%', left: '70%', size: '80px', delay: '1s' },
         { top: '40%', left: '30%', size: '50px', delay: '2s' },
         { top: '70%', left: '60%', size: '40px', delay: '0.5s' },
         { top: '85%', left: '20%', size: '70px', delay: '1.5s' },
-      ]
-    }
-  },
-  methods: {
-    enviarComentario() {
-      if (this.novoComentario.trim() && this.nota > 0) {
-        this.comentarios.push({
-          texto: this.novoComentario.trim(),
-          nota: this.nota
-        });
-        localStorage.setItem("comentarios", JSON.stringify(this.comentarios));
-        this.novoComentario = "";
-        this.nota = 0;
-      }
-    },
-    removerComentario(index) {
-      this.comentarios.splice(index, 1);
-      localStorage.setItem("comentarios", JSON.stringify(this.comentarios));
-    }
-  }
-}
-</script>
+      ];
 
+  const comentarios= ref([]);
+  const novoComentario = ref("");
+
+  const carregarComentarios = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/comentarios/", {
+        headers: {
+          Authorization: undefined
+        }
+      });
+      comentarios.value = res.data;
+    } catch (error){
+      console.log(error.response?.data || error.message)
+    }
+  };
+  const enviarComentario = async() => {
+    try {
+      if(!loginStore.authenticated){
+        alert("Você precisa estar logado para comentar")
+      }
+
+      await axios.post("http://localhost:8000/comentarios/", {
+        comentario: novoComentario.value
+      },
+      {
+        headers:{
+          Authorization: `Token: ${loginStore.token}`
+        }
+      }
+    );
+
+    novoComentario.value = "";
+
+    await carregarComentarios();
+    } catch(error){
+      console.log(error.response?.data || error.message)
+      alert(`Erro ao enviar comentário`)
+    }
+  };
+
+  onMounted(() => {
+    carregarComentarios()
+  });
+</script>
+<template>
+  <div class="fundo">
+    <!-- Bolhas -->
+  <div
+      v-for="(bolha, index) in bolhas"
+      :key="index"
+      class="bolha"
+      :style="{
+        top: bolha.top,
+        left: bolha.left,
+        width: bolha.size,
+        height: bolha.size,
+        animationDelay: bolha.delay
+      }"
+    >
+  </div>
+    <h1>DESCREVA SUA EXPERIÊNCIA</h1>
+  <ul v-if="comentarios.length">
+    <li v-for="c in comentarios" :key="c.id_comentario" class="comentario-item">
+      <p><strong>{{ c.usuario }}</strong>:</p> <p>{{ c.comentario }}</p>
+      <em>({{ new Date(c.data_hora).toLocaleString() }})</em>
+    </li>
+  </ul>
+  <p v-else> Não há comentários</p>
+  <div v-if="loginStore.authenticated" class="comentario-box">
+    <textarea v-model="novoComentario"
+    placeholder="Digite seu comentário"
+    rows="3"></textarea>
+    <button @click="enviarComentario">Enviar</button>
+  </div>
+  <div v-else>
+    <p>Faça login para comentar</p>
+  </div>
+  </div>
+</template>
 <style scoped>
 .fundo {
   position: relative;
@@ -137,6 +134,29 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza todos os <li> */
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+li {
+  margin-top: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column; /* muda de linha para coluna */
+  align-items: center;    /* centraliza horizontalmente */
+  text-align: center;     /* centraliza o texto */
+  color: black;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px 5vw 10px 5vw;
+  max-width: 500px;       /* largura máxima para não esticar demais */
 }
 
 textarea {

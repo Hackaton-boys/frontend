@@ -1,23 +1,53 @@
-<script>
-export default {
-  name: 'CadastroComponent',
-  data() {
-    return {
-      bolhas: [
-        { top: "10%", left: "5%", size: "150px"},
-        { top: "20%", left: "80%", size: "100px"},
-        { top: "70%", left: "10%", size: "120px"},
-        { top: "80%", left: "70%", size: "180px"},
-        { top: "50%", left: "50%", size: "90px"},
-        { top: "30%", left: "40%", size: "130px"},
-        { top: "60%", left: "20%", size: "110px"},
-        { top: "40%", left: "80%", size: "140px"},
-      ]
-    };
-  },
-};
+<script setup>
+import { reactive } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const bolhas = [
+  { top: "10%", left: "5%", size: "150px"},
+  { top: "20%", left: "80%", size: "100px"},
+  { top: "70%", left: "10%", size: "120px"},
+  { top: "80%", left: "70%", size: "180px"},
+  { top: "50%", left: "50%", size: "90px"},
+  { top: "30%", left: "40%", size: "130px"},
+  { top: "60%", left: "20%", size: "110px"},
+  { top: "40%", left: "80%", size: "140px"},
+];
+
+const payload = reactive({
+  username: '',
+  password: '',
+  email: '',
+  phone: '',
+  confirm: '',
+});
+
+
+async function submitForm(){
+  axios.defaults.headers.common['Authorization'] = ''
+
+  const formData = {
+  username: payload.username,
+  password: payload.password,
+  re_password: payload.confirm,
+  email: payload.email,
+  phone: payload.phone,
+
+}
+try{
+await axios.post('/api/v1/users/', formData)
+router.push('/login')
+}
+catch(err){
+  console.log(err.response?.data || err.message)
+}
+}
+
+
 
 </script>
+
 <template>
   <div class="app">
   <div v-for="(bolha, index) in bolhas" :key="index"
@@ -33,22 +63,26 @@ export default {
     <h2>
       CRIE SUA CONTA
     </h2>
-    <form action="get">
+    <form @submit.prevent="submitForm()">
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-account"></i></span>
-      <input type="text" placeholder="Nome Completo" />
+      <input type="text" placeholder="Nome Completo" name="username" v-model="payload.username"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-email"></i></span>
-      <input type="email" placeholder="Email" />
+      <input type="email" placeholder="Email" name="email" v-model="payload.email"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Senha" />
+      <input type="password" placeholder="Senha" name="password" v-model="payload.password"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Confirme sua senha" />
+      <input type="password" placeholder="Confirme sua senha" name="retype" v-model="payload.confirm"/>
+      </div>
+      <div class="input-field">
+        <span class="icon"><i class="mdi mdi-phone"></i></span>
+        <input type="phone" placeholder="Telefone" name="phone" v-model="payload.phone">
       </div>
       <button type="submit">Cadastrar</button>
     </form>

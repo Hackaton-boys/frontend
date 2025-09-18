@@ -4,13 +4,16 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import router from './router'
+import router from './router';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8000/';
 
 import App from './App.vue'
 
-
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
-app.use(router)
+app.use(pinia)
+app.use(router, axios)
 app.mount('#app')
