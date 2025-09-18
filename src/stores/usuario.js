@@ -1,41 +1,63 @@
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { defineStore } from 'pinia';
-import UsuarioAPI from '@/api/usuario';
+import axios from 'axios';
 
-const usuarioAPI = new UsuarioAPI();
+ export const useLoginStore = defineStore('login',() => {
+    const token = ref('')
+    const authenticated = ref('')
+    const usuario = reactive({
+    username: '',
+    email: '',
+    phone: '',
+  })
+    if(localStorage.getItem('token')){
+      token.value = localStorage.getItem('token');
+      authenticated.value = true;
+      axios.defaults.headers.common['Authorization'] = `Token ${token.value}`
+      getUserData()
+    }else{
+      token.value = ''
+      authenticated.value = false
+    }
+    function setToken(newToken){
+      token.value = newToken;
+      authenticated.value = true;
+      localStorage.setItem('token', newToken)
+      getUserData()
+    }
+    function removeToken(){
+      token.value = '';
+      authenticated.value = false;
+      axios.defaults.headers.common['Authorization'] = ''
+      localStorage.removeItem('token')
+      clearUserData()
+    }
 
-export const useUsuarioStore = defineStore('usuario', () => {
-  const usuarios = ref([]);
+    function clearUserData() {
+    usuario.username = ''
+    usuario.email = ''
+    usuario.phone = ''
+    }
 
-  async function getUsuarios() {
-    const data = await usuarioAPI.getUsuariosAll();
-    usuarios.value = data;
-  }
-
-  async function addUsuario(usuario) {
-    const novoUsuario = await usuarioAPI.addUsuario(usuario);
-    usuarios.value.push(novoUsuario);
-  }
-
-  async function updateUsuario(usuarioParaAtualizar) {
-    const usuarioAtualizado = await usuarioAPI.updateUsuario(usuarioParaAtualizar);
-    const index = usuarios.value.findIndex(u => u.id_usuario === usuarioAtualizado.id_usuario);
-    if (index !== -1) {
-      usuarios.value[index] = usuarioAtualizado;
+    async function getUserData() {
+    try {
+      const res = await axios.get('/api/user/') // <-- ajuste o endpoint correto da sua API
+      usuario.username = res.data.username
+      usuario.email = res.data.email
+      usuario.phone = res.data.phone
+    } catch (err) {
+      console.error('Erro ao buscar dados do usuário:', err)
+      removeToken()
     }
   }
 
-  async function deleteUsuario(id_usuario) {
-    await usuarioAPI.deleteUsuario(id_usuario);
-    usuarios.value = usuarios.value.filter(u => u.id_usuario !== id_usuario);
-  }
-
-  async function login(email, password) {
-    const tokens = await usuarioAPI.login(email, password);
-    localStorage.setItem("access_token", tokens.access);
-    localStorage.setItem("refresh_token", tokens.refresh);
-    return tokens;
-  }
-
-  return { usuarios, getUsuarios, addUsuario, updateUsuario, deleteUsuario, login };
-});
+    return{
+      token,
+      authenticated,
+      setToken,
+      removeToken,
+      usuario,
+      getUserData
+    }
+  })
+  ;

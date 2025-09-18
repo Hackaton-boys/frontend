@@ -1,10 +1,9 @@
 <script setup>
-import { reactive } from "vue";
-import { useUsuarioStore } from "@/stores/usuario";
-import { useRouter } from "vue-router";
+import { reactive } from 'vue';
+import axios from 'axios';
+import { useLoginStore } from '@/stores/usuario'
 
-const usuarioStore = useUsuarioStore();
-const router = useRouter();
+const loginStore = useLoginStore()
 
 // bolhas decorativas
 const bolhas = [
@@ -15,22 +14,34 @@ const bolhas = [
   { top: "40%", left: "40%", size: "180px" }
 ];
 
-// credenciais do formulário
-const credentials = reactive({
-  email: "",
-  password: ""
-});
+const payload = reactive({
+  username: '',
+  password: '',
+})
 
-// função de login
-async function handleLogin() {
-  try {
-    await usuarioStore.login(credentials.email, credentials.password);
-    alert("Login realizado com sucesso!");
-    router.push("/dashboard"); // redireciona após login
-  } catch {
-    alert("Falha no login. Verifique suas credenciais.");
+async function submitForm(){
+  const formData = {
+    email: payload.email,
+    password: payload.password
+  }
+  try{
+    axios.defaults.headers.common['Authorization'] = ''
+
+    const response = await axios.post('/auth/v1/token/login', formData)
+
+      const token = response.data.auth_token
+
+      loginStore.setToken('token', token)
+
+      console.log(token)
+
+      alert('Login realizado com sucesso')
+  }
+  catch(err){
+    console.log(err.response?.data || err.message )
   }
 }
+
 </script>
 
 <template>
@@ -47,15 +58,15 @@ async function handleLogin() {
     <div class="login-box">
       <h2>LOGIN</h2>
 
-      <form class="form" @submit.prevent="handleLogin">
+      <form class="form" @submit.prevent="submitForm">
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-email"></i></span>
-          <input type="email" v-model="credentials.email" placeholder="Email" />
+          <input type="email" name="email" v-model="payload.email" placeholder="Email" />
         </div>
 
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <input type="password" v-model="credentials.password" placeholder="Senha" />
+          <input type="password" name="password" v-model="payload.password" placeholder="Senha" />
         </div>
 
         <p class="cadastro">Cadastre-se</p>
@@ -69,7 +80,7 @@ async function handleLogin() {
 <style scoped>
 /* Tela cheia */
 .login-page {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: linear-gradient(to bottom right, #215567, #163a49);
   display: flex;

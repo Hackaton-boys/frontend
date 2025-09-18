@@ -1,8 +1,8 @@
 <script setup>
-import { reactive, onMounted, computed } from 'vue';
-import { useUsuarioStore } from '@/stores/usuario';
-
-const usuarioStore = useUsuarioStore();
+import { reactive } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const bolhas = [
   { top: "10%", left: "5%", size: "150px"},
@@ -15,54 +15,37 @@ const bolhas = [
   { top: "40%", left: "80%", size: "140px"},
 ];
 
-const defaultUsuario = {
-  id_usuario: 0,
-  nome: '',
+const payload = reactive({
+  username: '',
+  password: '',
   email: '',
-  senha: '',
-  confirmarSenha: '',
-  telefone: ''
-};
-
-const usuario = reactive({ ...defaultUsuario });
-
-const isEditing = computed(() => usuario.id_usuario && usuario.id_usuario !== 0);
-
-function resetForm() {
-  Object.assign(usuario, { ...defaultUsuario });
-}
-
-onMounted(async () => {
-  await usuarioStore.getUsuarios();
+  phone: '',
+  confirm: '',
 });
 
-async function SubmitUsuario() {
-  if (usuario.senha !== usuario.confirmarSenha) {
-    alert('As senhas não coincidem!');
-    return;
-  }
 
-  const payload = {
-    nome: usuario.nome,
-    email: usuario.email,
-    telefone: usuario.telefone,
-    password: usuario.senha
-  };
+async function submitForm(){
+  axios.defaults.headers.common['Authorization'] = ''
 
-  try {
-    if (isEditing.value) {
-      payload.id_usuario = usuario.id_usuario;
-      await usuarioStore.updateUsuario(payload);
-    } else {
-      await usuarioStore.addUsuario(payload);
-    }
-    resetForm();
-    await usuarioStore.getUsuarios();
-  } catch (error) {
-    console.error('Erro ao salvar usuário:', error);
-    alert('Ocorreu um erro ao salvar o usuário. Veja o console para detalhes.');
-  }
+  const formData = {
+  username: payload.username,
+  password: payload.password,
+  re_password: payload.confirm,
+  email: payload.email,
+  phone: payload.phone,
+
 }
+try{
+await axios.post('/api/v1/users/', formData)
+router.push('/login')
+}
+catch(err){
+  console.log(err.response?.data || err.message)
+}
+}
+
+
+
 </script>
 
 <template>
@@ -80,26 +63,26 @@ async function SubmitUsuario() {
     <h2>
       CRIE SUA CONTA
     </h2>
-    <form @submit.Prevent="SubmitUsuario">
+    <form @submit.prevent="submitForm()">
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-account"></i></span>
-      <input type="text" placeholder="Nome Completo" id="nome" v-model="usuario.nome" />
+      <input type="text" placeholder="Nome Completo" name="username" v-model="payload.username"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-email"></i></span>
-      <input type="email" placeholder="Email" id="email" v-model="usuario.email"/>
+      <input type="email" placeholder="Email" name="email" v-model="payload.email"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Senha" id="senha" v-model="usuario.senha"/>
+      <input type="password" placeholder="Senha" name="password" v-model="payload.password"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-lock"></i></span>
-      <input type="password" placeholder="Confirme sua senha" id="confirmar" v-model="usuario.confirmarSenha" />
+      <input type="password" placeholder="Confirme sua senha" name="retype" v-model="payload.confirm"/>
       </div>
       <div class="input-field">
         <span class="icon"><i class="mdi mdi-phone"></i></span>
-        <input type="number" placeholder="Telefone" id="telefone" v-model="usuario.telefone"/>
+        <input type="phone" placeholder="Telefone" name="phone" v-model="payload.phone">
       </div>
       <button type="submit">Cadastrar</button>
     </form>
