@@ -1,17 +1,25 @@
 <script setup>
-import { ref } from 'vue'
-import HeaderComponent from './components/HeaderComponent.vue'
-import MapsComponent from './components/MapsComponent.vue'
-import CadastroComponent from './components/CadastroComponent.vue'
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import BolhaLogin from './components/BolhaLogin.vue';
+import { useLoginStore } from '@/stores/usuario';
+import axios from 'axios'
+import { onMounted } from 'vue'
+const loginStore = useLoginStore()
 
-const activeSection = ref(null) // não começa no mapa
-
-function setSection(sec) {
-  activeSection.value = sec
-}
+onMounted(() => {
+  const token = loginStore.token
+  if(token){
+    axios.defaults.headers.common['Authorization'] = `Token ` + token
+  }
+  else{
+    axios.defaults.headers.common['Authorization'] = ''
+  }
+})
 </script>
 <template>
+  <HeaderComponent />
   <RouterView />
+  <BolhaLogin />
 </template>
 <style scoped>
 

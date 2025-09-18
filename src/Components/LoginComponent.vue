@@ -1,18 +1,47 @@
-<script>
-export default {
-  name: "LoginPage",
-  data() {
-    return {
-      bolhas: [
-        { top: "10%", left: "5%", size: "150px" },
-        { top: "20%", left: "70%", size: "120px" },
-        { top: "60%", left: "80%", size: "200px" },
-        { top: "75%", left: "15%", size: "100px" },
-        { top: "40%", left: "40%", size: "180px" }
-      ]
-    };
+<script setup>
+import { reactive } from 'vue';
+import axios from 'axios';
+import { useLoginStore } from '@/stores/usuario'
+
+const loginStore = useLoginStore()
+
+// bolhas decorativas
+const bolhas = [
+  { top: "10%", left: "5%", size: "150px" },
+  { top: "20%", left: "70%", size: "120px" },
+  { top: "60%", left: "80%", size: "200px" },
+  { top: "75%", left: "15%", size: "100px" },
+  { top: "40%", left: "40%", size: "180px" }
+];
+
+const payload = reactive({
+  username: '',
+  password: '',
+})
+
+async function submitForm(){
+  const formData = {
+    email: payload.email,
+    password: payload.password
   }
-};
+  try{
+    axios.defaults.headers.common['Authorization'] = ''
+
+    const response = await axios.post('/auth/v1/token/login', formData)
+
+      const token = response.data.auth_token
+
+      loginStore.setToken('token', token)
+
+      console.log(token)
+
+      alert('Login realizado com sucesso')
+  }
+  catch(err){
+    console.log(err.response?.data || err.message )
+  }
+}
+
 </script>
 
 <template>
@@ -29,15 +58,15 @@ export default {
     <div class="login-box">
       <h2>LOGIN</h2>
 
-      <form class="form">
+      <form class="form" @submit.prevent="submitForm">
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-email"></i></span>
-          <input type="email" placeholder="Email" />
+          <input type="email" name="email" v-model="payload.email" placeholder="Email" />
         </div>
 
         <div class="input-group">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <input type="password" placeholder="Senha" />
+          <input type="password" name="password" v-model="payload.password" placeholder="Senha" />
         </div>
 
         <p class="cadastro">Cadastre-se</p>
@@ -51,7 +80,7 @@ export default {
 <style scoped>
 /* Tela cheia */
 .login-page {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: linear-gradient(to bottom right, #215567, #163a49);
   display: flex;

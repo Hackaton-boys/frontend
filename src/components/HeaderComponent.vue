@@ -1,10 +1,6 @@
 <script setup>
 import videoUrl from '@/assets/videoteste.mp4'
 import logo from '@/imgs/MARE VERDE.png'
-
-const { setSection } = defineProps({
-  setSection: Function
-})
 </script>
 
 <template>
@@ -18,10 +14,18 @@ const { setSection } = defineProps({
         <div class="header-content">
           <img :src="logo" alt="Logo" class="logo">
           <ul>
-            <li><a href="#" @click.prevent="setSection('cadastro')">Cadastre-se</a></li>
-            <li><a href="#" @click.prevent="setSection('mapa')">Mapa</a></li>
-            <li><a href="#" @click.prevent="setSection('reservar')">Reservar</a></li>
-            <li><a href="#" @click.prevent="setSection('sobre')">Sobre Nós</a></li>
+            <li>
+              <Router-link to='/cadastro'>Cadastre-se</Router-link>
+            </li>
+            <li>
+              <Router-link to='/mapa'>Mapas</Router-link>
+            </li>
+            <li>
+              <Router-link to='/login'>Login</Router-link>
+            </li>
+            <li>
+              <Router-link to='/digasuaexperiencia'>Experiencia</Router-link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -104,8 +108,7 @@ img.logo {
 .vidro {
   padding: 40px 60px;
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(4px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   text-align: center;
