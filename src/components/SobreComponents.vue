@@ -43,11 +43,115 @@ const integrantes = [
 
  </div>
 
+
+<!--teste-->
+
+
 </template>
 
 
 <style scoped>
+/*teste*/
+.dashboard {
+  background: #1e4f5c;
+  width: 700px;
+  height: 350px;
+  border-radius: 6px;
+  padding: 10px;
+  color: white;
+  font-family: sans-serif;
+}
 
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2d6f7f;
+  padding: 8px 15px;
+  border-radius: 12px;
+}
+
+.avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #a3cfd6;
+}
+
+.username {
+  background: #a3cfd6;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.conteudo {
+  display: flex;
+  margin-top: 15px;
+  height: calc(100% - 60px);
+}
+
+.sidebar {
+  width: 150px;
+  border-right: 1px solid #a3cfd6;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  background: #2d6f7f;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #3c8c9f;
+}
+
+.sair {
+  margin-top: auto;
+  background: #5a7d83;
+}
+
+.main {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+.card {
+  background: #a3cfd6;
+  height: 40px;
+  border-radius: 8px;
+}
+
+/* círculo de fundo */
+.main::before {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #a3cfd6, #1e4f5c);
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+}
+/*fim do teste*/
 
 h1{
 
