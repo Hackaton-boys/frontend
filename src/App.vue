@@ -1,5 +1,4 @@
 <script setup>
-
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import BolhaLogin from './components/BolhaLogin.vue';
 import { useLoginStore } from '@/stores/usuario';

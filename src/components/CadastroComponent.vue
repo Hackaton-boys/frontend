@@ -171,7 +171,7 @@ div.app {
     opacity: 0.8;
     background: radial-gradient(circle at 190% 30%, #BDD5d9, #285b6c);
     animation: flutuar 6s ease-in-out infinite alternate;
-    margin-top: 47vw;
+    margin-top: 100vh;
   }
   @keyframes flutuar {
     from {
@@ -181,6 +181,6 @@ div.app {
       transform: translateY(-60px) scale(1.05);
     }
   }
-  
+
 </style>
 

@@ -13,7 +13,6 @@ const pagina = (() => router.push('/usuario'))
     <p class="title">
       Conectado como:
     </p>
-    <button @click="loginStore.removeToken()">desconectar</button>
   </div>
 </div>
 </template>

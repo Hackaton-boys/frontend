@@ -7,11 +7,8 @@ import Segunda from '@/imgs/TrasEco-removebg-preview.png'
   <div class="geral">
     <h1>RESERVE AGORA
     </h1>
-
     <main>
-
       <form action="" method="">
-
         <div>
           <label for="nome"></label>
           <input type="text" placeholder="nome:" class="nome" name="nome">
@@ -43,13 +40,11 @@ import Segunda from '@/imgs/TrasEco-removebg-preview.png'
         </div>
 
       </form>
-
       <div class="bolha bolha1"></div>
       <div class="bolha bolha2"></div>
       <div class="bolha bolha3"></div>
       <div class="bolha bolha4"></div>
       <div class="bolha bolha5"></div>
-
     </main>
   </div>
 
@@ -57,6 +52,8 @@ import Segunda from '@/imgs/TrasEco-removebg-preview.png'
 </template>
 
 <style scoped>
+
+
 .coment a {
   color: rgb(211, 209, 209);
   font-size: 1.1vw;
@@ -70,7 +67,6 @@ div.geral {
   min-height: 100vh;
   background-color: #215567;
   overflow: hidden;
-
 }
 
 h1 {
@@ -133,7 +129,6 @@ form {
 }
 
 button {
-
   margin: 1vw 0 0 0;
   padding: 10px;
   border: 1px solid white;
@@ -157,7 +152,6 @@ img {
   border-radius: 50%;
   z-index: 1;
   margin: 25vw 0;
-
 }
 
 .bolha2 {
@@ -168,9 +162,6 @@ img {
   border-radius: 50%;
   z-index: 1;
   margin: 73vw 0;
-
-
-
 }
 
 .bolha3 {
@@ -179,7 +170,6 @@ img {
   border-radius: 50%;
   z-index: 1;
   margin: 20vw 0;
-
 }
 
 .bolha4 {
@@ -198,7 +188,6 @@ img {
   background-image: linear-gradient(320deg, #215567, #BED6DA);
   border-radius: 50%;
   margin: 75vw 0;
-
 }
 
 /* Exemplos de bolhas em posições diferentes */
@@ -224,7 +213,7 @@ img {
 
 .bolha4 {
   top: 30%;
-  left: 80%;
+  left: 70%;
   width: 300px;
   height: 300px;
 }

@@ -28,8 +28,9 @@ function botao() {
               Seu navegador não suporta vídeos HTML5.
             </video>
             <div class="header-content">
+              <router-link to="/">
               <img :src="logo" alt="Logo" class="logo">
-
+              </router-link>
               <div class="menu-hamburguer" @click="botao()">
               <div class="barra1"></div>
               <div class="barra2"></div>
@@ -60,10 +61,6 @@ function botao() {
             </div>
           </div>
         </header>
-
-        <main>
-         <router-view />
-        </main>
       </div>
     </template>
 <style scoped>
