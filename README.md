@@ -1,7 +1,9 @@
 ##
 > O site foi desenvolvido com o objetivo de espalhar e auxiliar o projeto de mesmo nome na barra do sul
-> O projeto foi desenvolvido utilizando Vue.js, Open Street Maps, vue-router, pinia, material design icons, font awesome e axios
-> Os desenvolvedores do projeto são:
+
+ O projeto foi desenvolvido utilizando Vue.js, Open Street Maps, vue-router, pinia, material design icons, font awesome e axios
+
+ Os desenvolvedores do projeto são:
 
 - "Davi dos Passos",
   [Github](https://github.com/Davidospassos)
