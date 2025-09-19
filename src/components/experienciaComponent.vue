@@ -3,6 +3,7 @@ import { ref, onMounted, } from 'vue';
 import axios from 'axios';
 import { useLoginStore } from '@/stores/usuario'
 
+// Não funciona, erro: 401 (Unauthorized)
   const loginStore = useLoginStore()
   const bolhas = [
         { top: '5%', left: '10%', size: '60px', delay: '0s' },
